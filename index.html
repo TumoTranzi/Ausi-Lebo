@@ -1,202 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="description" content="A beautiful birthday surprise for Ausi Lebo filled with memories, love and celebration.">
-    <meta name="theme-color" content="#ffc107">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Happy Birthday Ausi Lebo</title>
 
-    <title>Happy Birthday Ausi Lebo</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/jpeg" href="1.jpeg">
+<style>
+body{
+    margin:0;
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg,#fdf6f0,#f7efe8,#fff);
+    min-height:100vh;
+    padding:40px 15px;
+}
 
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+/* soft floating glow */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background: radial-gradient(circle at top,#ffd6e0 0%,transparent 40%),
+                radial-gradient(circle at bottom,#d6f0ff 0%,transparent 40%);
+    opacity:0.6;
+    z-index:-1;
+}
 
-    <!-- Confetti -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+.container-card{
+    max-width:1100px;
+    margin:auto;
+    background:white;
+    border-radius:30px;
+    padding:40px 25px;
+    box-shadow:0 20px 60px rgba(0,0,0,0.08);
+}
 
-    <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-        }
+.small-title{
+    text-align:center;
+    font-size:1.2rem;
+    color:#c97b63;
+    letter-spacing:2px;
+}
 
-        body{
-            min-height:100vh;
-            font-family: 'Segoe UI', sans-serif;
-            background-image:url('./15.jpeg');
-            background-size:cover;
-            background-position:center;
-            background-attachment:fixed;
-            padding:40px 20px;
-            overflow-x:hidden;
-            scroll-behavior:smooth;
-        }
+.main-title{
+    text-align:center;
+    font-size:3.2rem;
+    font-weight:800;
+    color:#2c2c2c;
+    margin:10px 0;
+}
 
-        body::before{
-            content:"";
-            position:fixed;
-            inset:0;
-            background:rgba(0,0,0,0.35);
-            backdrop-filter:blur(3px);
-            z-index:-1;
-        }
+.sub-title{
+    text-align:center;
+    color:#777;
+    margin-bottom:30px;
+}
 
-        .main-card{
-            max-width:1300px;
-            margin:auto;
-            background:rgba(255,255,255,0.18);
-            backdrop-filter:blur(10px);
-            border-radius:40px;
-            padding:40px 25px;
-            box-shadow:0 10px 40px rgba(0,0,0,0.2);
-            border:1px solid rgba(255,255,255,0.2);
-        }
+/* message */
+.message{
+    background:#fff7f2;
+    border-left:5px solid #ffb199;
+    padding:25px;
+    border-radius:20px;
+    color:#444;
+    line-height:1.7;
+}
 
-        .title-small{
-            text-align:center;
-            color:white;
-            font-size:1.2rem;
-            margin-bottom:10px;
-        }
+/* button */
+.reveal-btn{
+    display:block;
+    margin:30px auto;
+    padding:12px 28px;
+    border:none;
+    border-radius:50px;
+    background:linear-gradient(90deg,#ffb199,#ff0844);
+    color:white;
+    font-weight:600;
+    transition:0.3s;
+}
 
-        .main-title{
-            text-align:center;
-            font-size:4rem;
-            font-weight:800;
-            color:white;
-            margin-bottom:10px;
-            text-shadow:0 5px 15px rgba(0,0,0,0.3);
-        }
+.reveal-btn:hover{
+    transform:scale(1.05);
+}
 
-        .subtitle{
-            text-align:center;
-            color:#f3f3f3;
-            margin-bottom:30px;
-            font-size:1rem;
-        }
+/* gallery */
+.gallery{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:20px;
+}
 
-        .message-box{
-            background:rgba(255,255,255,0.2);
-            border-radius:30px;
-            padding:30px;
-            color:white;
-            line-height:1.8;
-            font-size:1rem;
-            margin-bottom:40px;
-            border-left:5px solid #ffc107;
-        }
+.card{
+    width:200px;
+    border:none;
+    border-radius:20px;
+    overflow:hidden;
+    background:white;
+    box-shadow:0 10px 25px rgba(0,0,0,0.06);
+    transition:0.3s;
+    opacity:0;
+    animation:fadeUp 0.6s forwards;
+}
 
-        .gallery{
-            display:flex;
-            flex-wrap:wrap;
-            justify-content:center;
-            gap:25px;
-        }
+.card:hover{
+    transform:translateY(-8px);
+}
 
-        .photo-card{
-            width:220px;
-            background:rgba(255,255,255,0.18);
-            border-radius:25px;
-            padding:15px;
-            transition:0.4s;
-            backdrop-filter:blur(6px);
-            border:1px solid rgba(255,255,255,0.15);
-            animation:fadeUp 0.7s ease forwards;
-            opacity:0;
-        }
+.card img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+}
 
-        .photo-card:hover{
-            transform:translateY(-10px) scale(1.03);
-        }
+.card p{
+    padding:10px;
+    margin:0;
+    text-align:center;
+    font-size:0.85rem;
+    color:#555;
+}
 
-        .photo{
-            width:100%;
-            aspect-ratio:1/1;
-            object-fit:cover;
-            border-radius:20px;
-        }
+/* animation */
+@keyframes fadeUp{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
 
-        .photo-text{
-            margin-top:12px;
-            text-align:center;
-            color:white;
-            font-size:0.9rem;
-            font-weight:500;
-        }
-
-        .reveal-btn{
-            display:block;
-            margin:20px auto 40px;
-            border:none;
-            padding:15px 35px;
-            border-radius:50px;
-            font-size:1rem;
-            font-weight:600;
-            background:#ffc107;
-            color:black;
-            transition:0.3s;
-        }
-
-        .reveal-btn:hover{
-            transform:scale(1.05);
-            background:white;
-        }
-
-        @keyframes fadeUp{
-            from{
-                opacity:0;
-                transform:translateY(30px);
-            }
-            to{
-                opacity:1;
-                transform:translateY(0);
-            }
-        }
-
-        @media(max-width:768px){
-            .main-title{ font-size:2.5rem; }
-            .photo-card{ width:160px; }
-            .message-box{ font-size:0.95rem; }
-        }
-
-        @media(max-width:480px){
-            body{
-                padding:20px 10px;
-            }
-            .photo-card{ width:140px; }
-            .main-title{ font-size:2rem; }
-        }
-    </style>
+/* mobile */
+@media(max-width:600px){
+    .main-title{font-size:2.2rem;}
+    .card{width:150px;}
+}
+</style>
 </head>
 
 <body>
 
-<div class="main-card">
+<div class="container-card">
 
-    <div class="title-small">🎉 Happy Birthday 🎉</div>
+    <div class="small-title">🎉 A SPECIAL DAY 🎉</div>
+    <div class="main-title">Ausi Lebo</div>
+    <div class="sub-title">A little gift of memories & love ❤️</div>
 
-    <h1 class="main-title">Ausi Lebo</h1>
-
-    <div class="subtitle">
-        Wishing you happiness, love, peace and endless blessings ❤️
+    <div class="message">
+        <p><b>Happy Birthday ❤️</b></p>
+        <p>You are one of the most beautiful souls. Today is all about you.</p>
+        <p>May your life be filled with peace, success, love, and happiness.</p>
+        <p>You deserve everything beautiful in this world 🌸</p>
+        <p><i>— With love</i></p>
     </div>
 
-    <div class="message-box">
-        <p>🎂 Happy Birthday, Ausi Lebo ❤️</p>
-        <p>Today is a beautiful reminder of how special you are. Thank you for being such a loving, caring, kind, and wonderful sister.</p>
-        <p>May your life continue to shine with joy, success, peace, good health, and countless blessings.</p>
-        <p>Keep smiling, keep shining, and never stop being amazing.</p>
-        <p>I love you so much ❤️</p>
-        <p style="margin-top:15px; font-style:italic;">— From your loving sibling 🌸</p>
-    </div>
-
-    <button class="reveal-btn" id="showPhotos">
-        See Your Beautiful Memories ✨
-    </button>
+    <button class="reveal-btn" id="btn">Open Your Memories ✨</button>
 
     <div class="gallery" id="gallery"></div>
 
@@ -205,69 +162,52 @@
 <script>
 
 const gallery = document.getElementById("gallery");
-const button = document.getElementById("showPhotos");
+const btn = document.getElementById("btn");
 
 const messages = [
-    "🌸 Beautiful soul","💖 Forever loved","✨ Keep shining","🌼 Pure happiness",
-    "🎂 Birthday queen","🌺 Precious memories","💛 Gentle heart","🌹 Amazing sister",
-    "🎉 Endless joy","🌟 Special moments","🍃 Peace & love","💐 Wonderful person",
-    "🌈 Keep smiling","🕊️ Blessed always","❤️ Loved forever"
+"Beautiful soul","Forever loved","Keep shining","Pure heart",
+"Birthday queen","Precious memory","Gentle spirit","Amazing sister",
+"Joy always","Special moment","Peace & love","Wonderful you",
+"Smile always","Blessed life","Loved forever"
 ];
 
-let loaded = false;
+let opened = false;
 
-button.addEventListener("click", () => {
+btn.addEventListener("click", () => {
 
-    if(loaded) return;
+if(opened) return;
 
-    for(let i = 1; i <= 15; i++){
+for(let i=1;i<=15;i++){
 
-        const card = document.createElement("div");
-        card.className = "photo-card";
-        card.style.animationDelay = `${i * 0.08}s`;
+const div = document.createElement("div");
+div.className = "card";
+div.style.animationDelay = (i*0.05)+"s";
 
-        const img = document.createElement("img");
-        img.className = "photo";
-        img.src = `${i}.jpeg`;
+const img = document.createElement("img");
+img.src = `${i}.jpeg`;
+img.onerror = () => img.src = "15.jpeg";
 
-        img.onerror = function(){
-            this.src = "15.jpeg"; // local fallback
-        }
+const p = document.createElement("p");
+p.innerText = messages[i-1];
 
-        const text = document.createElement("div");
-        text.className = "photo-text";
-        text.innerText = messages[i - 1];
+div.appendChild(img);
+div.appendChild(p);
+gallery.appendChild(div);
+}
 
-        card.appendChild(img);
-        card.appendChild(text);
-        gallery.appendChild(card);
-    }
+opened = true;
 
-    loaded = true;
-
-    confetti({
-        particleCount:150,
-        spread:90,
-        origin:{ y:0.6 }
-    });
-
-    button.innerText = "Memories Loaded ❤️";
+confetti({
+particleCount:120,
+spread:80,
+origin:{y:0.6}
 });
 
-window.onload = () => {
-    setTimeout(() => {
-        confetti({
-            particleCount:80,
-            spread:70,
-            origin:{ y:0.7 }
-        });
-    }, 500);
-};
+btn.innerText = "Memories Opened ❤️";
+});
 
 </script>
 
-<!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>
