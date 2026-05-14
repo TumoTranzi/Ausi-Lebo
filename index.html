@@ -10,37 +10,42 @@
 
 <style>
 
+/* 🌸 BACKGROUND IMAGE */
 body{
     margin:0;
     font-family:'Poppins','Segoe UI',sans-serif;
-    background: linear-gradient(135deg,#fff0f5,#f0f8ff,#ffffff);
+
+    background-image: url("15.jpeg"); /* ✅ your background image */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
     min-height:100vh;
     padding:40px 15px;
+    position:relative;
 }
 
-/* glow background */
+/* 🔥 dark overlay for readability */
 body::before{
     content:"";
     position:fixed;
     inset:0;
-    background: radial-gradient(circle at top,#ffb6c1 0%,transparent 45%),
-                radial-gradient(circle at bottom,#87cefa 0%,transparent 45%);
-    opacity:0.4;
+    background: rgba(0,0,0,0.45);
     z-index:-1;
 }
 
-/* main card */
+/* MAIN CARD */
 .container-card{
     max-width:1100px;
     margin:auto;
-    background:rgba(255,255,255,0.9);
+    background: rgba(255,255,255,0.92);
     border-radius:25px;
     padding:40px 25px;
-    box-shadow:0 20px 60px rgba(0,0,0,0.1);
-    backdrop-filter:blur(10px);
+    box-shadow:0 20px 60px rgba(0,0,0,0.2);
+    backdrop-filter: blur(10px);
 }
 
-/* titles */
+/* TITLES */
 .small-title{
     text-align:center;
     font-size:1rem;
@@ -61,17 +66,16 @@ body::before{
     margin-bottom:25px;
 }
 
-/* message box */
+/* MESSAGE */
 .message{
     background:#fff5f7;
     border-left:6px solid #ff6b81;
     padding:25px;
     border-radius:15px;
-    color:#444;
     line-height:1.8;
 }
 
-/* button */
+/* BUTTON */
 .reveal-btn{
     display:block;
     margin:30px auto;
@@ -82,14 +86,13 @@ body::before{
     color:white;
     font-weight:600;
     transition:0.3s;
-    box-shadow:0 10px 20px rgba(255,71,87,0.3);
 }
 
 .reveal-btn:hover{
     transform:scale(1.05);
 }
 
-/* gallery */
+/* GALLERY */
 .gallery{
     display:flex;
     flex-wrap:wrap;
@@ -97,37 +100,39 @@ body::before{
     gap:20px;
 }
 
-/* photo card */
+/* 🃏 CARD */
 .card{
     width:200px;
     border-radius:18px;
     overflow:hidden;
     background:white;
-    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+    box-shadow:0 8px 20px rgba(0,0,0,0.1);
     opacity:0;
     animation:fadeUp 0.6s forwards;
     transition:0.3s;
 }
 
-/* 🔥 CARD HOVER EFFECT */
+/* 🃏 CARD HOVER */
 .card:hover{
     transform:translateY(-10px) scale(1.05);
-    box-shadow:0 15px 35px rgba(0,0,0,0.2);
+    box-shadow:0 20px 40px rgba(0,0,0,0.25);
 }
 
-/* 🔥 IMAGE HOVER EFFECT */
+/* 🖼️ IMAGE INSIDE CARD */
 .card img{
     width:100%;
     height:200px;
     object-fit:cover;
-    transition:0.4s ease;
+    transition:0.5s ease;
 }
 
+/* 🔥 IMAGE HOVER (ZOOM INSIDE CARD) */
 .card img:hover{
-    transform:scale(1.15);
+    transform:scale(1.25);
     filter:brightness(1.1);
 }
 
+/* TEXT */
 .card p{
     padding:10px;
     margin:0;
@@ -136,13 +141,13 @@ body::before{
     color:#555;
 }
 
-/* animation */
+/* ANIMATION */
 @keyframes fadeUp{
     from{opacity:0; transform:translateY(25px);}
     to{opacity:1; transform:translateY(0);}
 }
 
-/* mobile */
+/* MOBILE */
 @media(max-width:600px){
     .main-title{font-size:2.2rem;}
     .card{width:150px;}
@@ -199,6 +204,8 @@ for(let i=1;i<=15;i++){
 
     const img = document.createElement("img");
     img.src = `${i}.jpeg`;
+
+    // fallback image if missing
     img.onerror = () => img.src = "15.jpeg";
 
     const p = document.createElement("p");
